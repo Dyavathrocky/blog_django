@@ -1,0 +1,23 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}My Blog{% endblock title %}
+
+{% block content %}
+    <h1> This is My blog</h1>
+    {% for a in posts %}
+        <h2>
+            <a href="{{ a.get_absolute_url }}">
+                {{ a.title }}
+            </a>
+        </h2>
+        <p class="date">
+            publised {{ a.publish }} by {{ a.author }}
+        </p>
+        {{ a.body|truncatewords:30|linebreaks }}
+    
+    {% endfor %}
+    {% include "pagination.html" with page=posts %}
+{% endblock content %}
+
+
+
